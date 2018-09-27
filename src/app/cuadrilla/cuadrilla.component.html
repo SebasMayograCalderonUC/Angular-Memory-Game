@@ -1,0 +1,32 @@
+<div *ngIf="loosingCount<3">
+  <label for="inputTamannoCuadricula">Tamaño de cuadricula</label>
+  <input type="number" id="inputTamannoCuadricula" #input [disabled]="firstclick">
+  <button *ngIf="loosingCount<3" (click)="generarValor(input.value)" [disabled]="loosingCount>0 || firstclick">Generar</button>
+</div>
+<h1>Tiempo {{secondsToMinutes(timer)}}</h1>
+<h1>Tiempo Limite {{secondsToMinutes(timeLimit)}}</h1>
+<label for="time">Ajuste de tiempo</label>
+<input type="number" id="time" #time [disabled]="timer > 0 ">
+<button (click)="setTimeLimit(time.value)" [disabled]="timer > 0 ">Cambiar Limite de tiempo</button>
+<h1 *ngIf="error" style="color:black; background-color:#ff4645">Solo valores Pares</h1>
+<div *ngIf="loosingCount >2" style="color:black; background-color:#ff4645; width: 750px">
+  <h1 >Ya perdio!</h1>
+  <h4>Cantidad de parejas encontradas: {{getMatchingAmount()}}</h4>
+  <h4>Tiempo jugado {{secondsToMinutes(timer)}}</h4>
+</div>
+<button *ngIf="loosingCount>2" (click)="playAgain()">Volver a jugar!</button>
+<div *ngFor="let a of cuadrilla">
+  <div *ngFor="let b of a"
+       style="width: 50px"
+       [style.background-color]="b.hasPair && loosingCount >2?'pink':null"
+       class="numCuadrilla"
+       (click)="loosingCount<3? canChoose? setValuestoPlay(b): null : null"
+       [style.color]="b.hasPair? 'red' :
+                    (firstValue? (firstValue === b || secondValue === b ?
+                    'white': 'black' ):
+                    'black')">
+
+        {{loosingCount >2? b.value: firstValue===b? b.value:getValue(b)}}
+  </div>
+</div>
+<button (click)="toggleShow()" [disabled]="loosingCount >2">{{showing? 'Esconder' : 'Mostrar' }}</button>

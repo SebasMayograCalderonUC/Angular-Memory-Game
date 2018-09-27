@@ -1,0 +1,9 @@
+.numCuadrilla{
+  display: inline-block;
+  margin: 15px;
+  background-color: aqua;
+  color: black;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 20px;
+}

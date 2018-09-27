@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { CuadrillaComponent } from './cuadrilla/cuadrilla.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CuadrillaComponent
   ],
   imports: [
     BrowserModule
